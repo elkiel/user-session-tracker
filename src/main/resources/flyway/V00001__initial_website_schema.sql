@@ -1,0 +1,21 @@
+BEGIN;
+
+CREATE SCHEMA IF NOT EXISTS website;
+
+SET search_path TO website;
+
+
+CREATE TABLE IF NOT EXISTS visit (
+   id SERIAL PRIMARY KEY,
+   visit_date DATE NOT NULL,
+   ip TEXT NOT NULL
+);
+
+
+CREATE SEQUENCE "public".visit_seq
+    START WITH 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+COMMIT;

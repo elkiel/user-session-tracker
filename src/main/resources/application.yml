@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: user-session-tracker
+  profiles:
+    active: local
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      default_schema: website
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/website
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    url: jdbc:postgresql://localhost:5432/website
+    user: user
+    password: password
+    schemas: website
+    locations: classpath:flyway
+
+server:
+  port: 8080
+
+

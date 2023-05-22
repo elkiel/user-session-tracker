@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: User Visit API
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /save:
+    post:
+      summary: Saves user visit data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+      responses:
+        '200':
+          description: The data has been successfully saved.
+        '400':
+          description: Missing required parameter.
+  /statistics:
+    get:
+      summary: Returns the number of visits grouped by day.
+      responses:
+        '200':
+          description: The data has been successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatisticDto'
+components:
+  schemas:
+    Visit:
+      type: object
+      required:
+        - date
+        - ip
+      properties:
+        date:
+          type: string
+          format: date
+          example: '2020-10-20'
+        ip:
+          type: string
+          example: '212.34.52.103'
+    StatisticDto:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          example: '2020-10-20'
+        count:
+          type: integer
+          example: 7
